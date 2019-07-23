@@ -1,0 +1,41 @@
+<mat-card>
+  <div class="example-container">
+    <mat-form-field hintLabel="Max 15 символов" class="input-field">
+      <input matInput #carName maxlength="15" placeholder="Введите название автомабиля">
+      <mat-hint align="end">{{ carName.value?.length || 0 }}/15</mat-hint>
+    </mat-form-field>
+    <mat-form-field hintLabel="Max 4 символов" class="input-field">
+      <input matInput #carYear maxlength="4" placeholder="Введите год автомабиля">
+      <mat-hint align="end">{{ carYear.value?.length || 0 }}/4</mat-hint>
+    </mat-form-field>
+  
+    <button 
+      mat-raised-button
+      matTooltip="Добавить новый автомабиль"
+      matTooltipPosition="above"
+      color="accent"
+      (click)="addCar()">Добавить</button>
+  </div>
+</mat-card>
+
+<br>
+<mat-card>
+  <mat-card-header>
+    <mat-form-field hintLabel="Max 15 символов" class="input-field search">
+      <input matInput #searchText maxlength="15" placeholder="Для поиска введите название автомабиля">
+      <mat-hint align="end">{{ searchText.value?.length || 0 }}/15</mat-hint>
+    </mat-form-field>
+  </mat-card-header>
+  <mat-list>
+    <mat-list-item *ngFor="let car of cars | carFilter:searchText.value; last as last">
+      <app-car  [carItem]="car" appBackground [hoverBackground]="'red'" (deleteCar)="onDeleteCar($event)">
+        <!-- <p>car car car</p> -->
+      </app-car>
+      <mat-icon matListIcon color="primary">folder</mat-icon>
+      <mat-divider *ngIf="!last" class="divider"></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</mat-card>
+
+
+<h1>{{ asyncTitle | async }}</h1>
