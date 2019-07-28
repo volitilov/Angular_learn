@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatToolbarModule, MatOptionModule, MatFormFieldModule, MatSelectModule,
   MatButtonModule, MatInputModule, MatListModule, MatTooltipModule, MatIconModule,
-  MatCardModule
+  MatCardModule, MatGridListModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +15,7 @@ import { AppComponent } from './app.component';
 import { CarsComponent } from './components/cars/cars.component';
 import { CarComponent } from './components/car/car.component';
 import { HeaderComponent } from './components/header/header.component';
+
 import { BackgroundDirective } from './directives/background.directive';
 import { PowPipe } from './pipes/pow.pipe';
 import { CarFilterPipe } from './pipes/car-filter.pipe';
@@ -46,7 +46,8 @@ import { CarFilterPipe } from './pipes/car-filter.pipe';
     MatListModule,
     MatTooltipModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule
 
   ],
   providers: [],

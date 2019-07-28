@@ -1,3 +1,24 @@
+:host {
+    width: 100%;
+}
+
 .icon-clear {
     cursor: pointer;
+}
+.car {
+    span {
+        vertical-align: middle;
+        display: inline-block;
+    }
+    span:last-child {
+        float: right;
+        margin-top: 7px;
+        button {
+            margin: 3px;
+        }
+    }
+}
+
+.active {
+    background-color: gainsboro;
 }

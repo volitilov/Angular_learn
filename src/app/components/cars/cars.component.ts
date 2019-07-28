@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
-import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { CarsService } from '../../services/cars/cars.service';
 
 
 @Component({
@@ -15,35 +13,29 @@ export class CarsComponent implements OnInit {
   @ViewChild('searchText', {static: true}) searchText: ElementRef;
 
   cars = [];
-  title: string;
-  asyncTitle = of('Async title 3 seconds').pipe(delay(3000));
 
-  constructor() { }
+  constructor(
+    private carsServices: CarsService
+  ) { }
 
   ngOnInit() {
-    this.cars = [
-      {
-        id: 1,
-        name: 'Ford',
-        year: 1990
-      }
-    ];
+    this.cars = this.carsServices.getCars();
   }
 
   addCar() {
     if (this.carName.nativeElement.value) {
-      this.cars.push({
-        id: this.cars.length + 1,
+      const cars = this.carsServices.getCars();
+      const car = {
+        id: cars.length + 1,
         name: this.carName.nativeElement.value,
-        year: this.carYear.nativeElement.value
-      });
+        year: this.carYear.nativeElement.value,
+        isSold: false
+      };
+
+      this.carsServices.addCar(car);
     }
 
     this.carName.nativeElement.value = '';
     this.carYear.nativeElement.value = '';
-  }
-
-  onDeleteCar(car) {
-    this.cars = this.cars.filter(item => item.id !== car.id);
   }
 }

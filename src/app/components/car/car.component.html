@@ -1,7 +1,28 @@
-<div class="car">
-  <p>
-    <small>Name: </small> <b>{{ carItem.name }}</b> - {{ carItem.year | pow:3 }}
-    <mat-icon class="icon-clear" (click)="onDeleteCar()">clear</mat-icon>
-  </p>
+<br>
+<mat-card class="car" [class.active]="carItem.isSold">
+  <span>
+    <p>
+      <small>Name: </small> <b>{{ carItem.name }}</b> - {{ carItem.year | pow:3 }}
+      <mat-icon class="icon-clear" (click)="onDeleteCar()">clear</mat-icon>
+    </p>
+  </span>
   <!-- <ng-content></ng-content> -->
-</div>
+  <span>
+    <button 
+      mat-raised-button
+      matTooltip="Купить автомабиль"
+      matTooltipPosition="above"
+      color="primary"
+      (click)="onBayCar()"
+      [disabled]="carItem.isSold"
+      >Купить</button>
+    <button 
+      mat-raised-button
+      matTooltip="Вернуть автомабиль"
+      matTooltipPosition="above"
+      color="accent"
+      (click)="onReturnCar()"
+      [disabled]="!carItem.isSold"
+      >Вернуть</button>
+  </span>
+</mat-card>

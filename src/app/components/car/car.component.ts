@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { CarsService } from '../../services/cars/cars.service';
 
 @Component({
   selector: 'app-car',
@@ -8,9 +9,10 @@ import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChange
 export class CarComponent implements OnInit, OnChanges {
   @Input() carItem: any;
   @Input() name: string;
-  @Output() deleteCar = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(
+    private carsServices: CarsService
+  ) { }
 
   ngOnInit() {}
 
@@ -22,7 +24,14 @@ export class CarComponent implements OnInit, OnChanges {
   }
 
   onDeleteCar() {
-    this.deleteCar.emit(this.carItem);
+    this.carsServices.deleteCar(this.carItem);
   }
 
+  onBayCar() {
+    this.carsServices.bayCar(this.carItem);
+  }
+
+  onReturnCar() {
+    this.carsServices.returnCar(this.carItem);
+  }
 }
